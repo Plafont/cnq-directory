@@ -8,130 +8,258 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f3f4f6;line-height:1.5}
 .container{max-width:1280px;margin:0 auto;padding:0 1rem}
+
+/* Header */
 .header{background:#111827;color:white;padding:2rem 1rem}
 .header h1{font-size:2.25rem;font-weight:bold;margin-bottom:.5rem}
 .header p{color:#d1d5db}
+
+/* Filters */
 .filters-section{padding:1.5rem 0}
 .filters-container{background:white;border-radius:.5rem;box-shadow:0 1px 3px rgba(0,0,0,.1);padding:1.5rem;margin-bottom:1.5rem}
 .filter-row{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1rem}
-@media(min-width:768px){.filter-row{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.filter-row.three-col{grid-template-columns:repeat(3,1fr)}}
+.filter-row:last-of-type{margin-bottom:0}
+@media(min-width:768px){.filter-row.two-col{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.filter-row.four-col{grid-template-columns:repeat(4,1fr)}.filter-row.three-col{grid-template-columns:repeat(3,1fr)}}
+.filter-label{font-size:.75rem;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.25rem}
 .input-wrapper{position:relative}
-.input-icon{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:#9ca3af;width:20px;height:20px}
-input[type="text"],select{width:100%;padding:.5rem 1rem;border:1px solid #d1d5db;border-radius:.375rem;font-size:1rem}
-input[type="text"]{padding-left:2.5rem}
+.input-icon{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:#9ca3af;width:16px;height:16px}
+input[type="text"],select{width:100%;padding:.5rem 1rem;border:1px solid #d1d5db;border-radius:.375rem;font-size:.9rem;background:white;color:#111827}
+input[type="text"]{padding-left:2.25rem}
 input[type="text"]:focus,select:focus{outline:none;border-color:#111827;box-shadow:0 0 0 3px rgba(17,24,39,.1)}
-.results-count{margin-top:1rem;font-size:.875rem;color:#4b5563}
-.alumni-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-bottom:2rem}
+.filter-divider{border:none;border-top:1px solid #e5e7eb;margin:.75rem 0}
+.results-count{font-size:.875rem;color:#4b5563;margin-top:.75rem}
+.checkbox-row{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:#374151;cursor:pointer;margin-top:.5rem}
+.checkbox-row input{width:auto;padding:0}
+
+/* Grid */
+.alumni-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-bottom:2rem}
 @media(min-width:1024px){.alumni-grid{grid-template-columns:repeat(2,1fr)}}
-.profile-card{background:white;border-radius:.5rem;box-shadow:0 1px 3px rgba(0,0,0,.1);overflow:hidden;transition:box-shadow .3s}
-.profile-card:hover{box-shadow:0 10px 15px rgba(0,0,0,.1)}
-.photo-grid{display:grid}
-.photo-grid.two-photos{grid-template-columns:repeat(2,1fr)}
-.photo-grid img{width:100%;height:12rem;object-fit:cover}
-.profile-content{padding:1.5rem}
-.profile-header{margin-bottom:1rem}
-.profile-name{font-size:1.5rem;font-weight:bold;color:#111827;margin-bottom:.25rem}
-.profile-full-name{font-size:.875rem;color:#6b7280;margin-bottom:.5rem}
-.profile-companies{display:flex;gap:1rem;font-size:.875rem;color:#374151;margin-top:.5rem}
+
+/* Card */
+.profile-card{background:white;border-radius:.5rem;box-shadow:0 1px 3px rgba(0,0,0,.1);overflow:hidden;transition:box-shadow .2s}
+.profile-card:hover{box-shadow:0 6px 16px rgba(0,0,0,.12)}
+
+/* Card header: name+contact left, photo right */
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:1.25rem 1.25rem .75rem}
+.card-header-left{flex:1;min-width:0}
+.profile-name{font-size:1.25rem;font-weight:700;color:#111827;margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.profile-full-name{font-size:.8rem;color:#6b7280;margin-bottom:.4rem}
+.profile-companies{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font-size:.8rem;color:#374151;margin-bottom:.5rem}
 .profile-companies span{font-weight:600}
-.contact-info{margin-bottom:1rem}
-.contact-item{display:flex;align-items:center;gap:.5rem;color:#374151;font-size:.875rem;margin-bottom:.5rem}
-.contact-item svg{color:#6b7280;flex-shrink:0}
+.contact-item{display:flex;align-items:center;gap:.4rem;color:#374151;font-size:.8rem;margin-bottom:.3rem}
+.contact-item svg{color:#9ca3af;flex-shrink:0}
 .contact-item a{color:#2563eb;text-decoration:none}
 .contact-item a:hover{text-decoration:underline}
-.writeup{margin-bottom:1rem}
-.writeup p{color:#374151;line-height:1.625;white-space:pre-line}
-.activities{margin-bottom:1rem}
-.activities p{color:#374151;line-height:1.625}
-.activities .label{font-weight:600}
-.affiliations{padding-top:.75rem;border-top:1px solid #e5e7eb}
-.affiliations-tags{display:flex;flex-wrap:wrap;gap:.5rem}
-.affiliation-tag{padding:.25rem .75rem;background:#f3f4f6;color:#374151;font-size:.875rem;border-radius:9999px}
+
+/* Photo */
+.card-photo{flex-shrink:0}
+.card-photo img{width:100px;height:100px;object-fit:cover;border-radius:4px;display:block;border:1px solid #e5e7eb}
+
+/* Card body */
+.card-body{padding:.75rem 1.25rem 1.25rem;border-top:1px solid #f3f4f6}
+.card-field{margin-bottom:.5rem;font-size:.85rem;color:#374151;line-height:1.5}
+.card-field .label{font-weight:600;color:#111827}
+.writeup{margin-bottom:.75rem;font-size:.85rem;color:#374151;line-height:1.65;white-space:pre-line}
+.affiliations{padding-top:.75rem;border-top:1px solid #f3f4f6}
+.affiliations-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.affiliation-tag{padding:.2rem .65rem;background:#f3f4f6;color:#374151;font-size:.78rem;border-radius:9999px;border:1px solid #e5e7eb}
+
+/* No results */
 .no-results{text-align:center;padding:3rem 0;display:none}
 .no-results.show{display:block}
-.no-results p{color:#6b7280;font-size:1.125rem}
+.no-results p{color:#6b7280;font-size:1.1rem}
+
+/* Section label above filter groups */
+.filter-section-label{font-size:.7rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
 </style>
 </head>
 <body>
 <div id="app">
-<div class="header"><div class="container"><h1>Courage Never Quits Active Directory</h1><p>Reconnect with Classmates the easy way!</p></div></div>
+
+<!-- Header -->
+<div class="header">
+  <div class="container">
+    <h1>Courage Never Quits Active Directory</h1>
+    <p>Reconnect with classmates — build your book by company, team, or location.</p>
+  </div>
+</div>
+
 <div class="container filters-section">
-<div class="filters-container">
-<div class="filter-row three-col">
-<select id="gradCoFilter"><option value="">All Grad Companies</option></select>
-<select id="plebeCoFilter"><option value="">All Plebe Companies</option></select>
-<select id="affiliationFilter"><option value="">All Affiliations</option></select>
+  <div class="filters-container">
+
+    <!-- Row 1: Book builders (dropdowns) -->
+    <div class="filter-section-label">Build Your Book</div>
+    <div class="filter-row four-col">
+      <div>
+        <div class="filter-label">Grad Company</div>
+        <select id="gradCoFilter"><option value="">All Grad Companies</option></select>
+      </div>
+      <div>
+        <div class="filter-label">Plebe Company</div>
+        <select id="plebeCoFilter"><option value="">All Plebe Companies</option></select>
+      </div>
+      <div>
+        <div class="filter-label">Teams</div>
+        <select id="teamsFilter"><option value="">All Teams</option></select>
+      </div>
+      <div>
+        <div class="filter-label">Metro Area</div>
+        <select id="metroFilter"><option value="">All Metro Areas</option></select>
+      </div>
+    </div>
+
+    <hr class="filter-divider">
+
+    <!-- Row 2: Text searches -->
+    <div class="filter-section-label">Search</div>
+    <div class="filter-row three-col">
+      <div>
+        <div class="filter-label">Name</div>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="nameSearch" placeholder="Search by name..."/>
+        </div>
+      </div>
+      <div>
+        <div class="filter-label">Interests / Location</div>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="interestsSearch" placeholder="Search interests or location..."/>
+        </div>
+      </div>
+      <div>
+        <div class="filter-label">First Assignment</div>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="firstAssignmentSearch" placeholder="e.g. Fort Bragg, Korea, 82nd..."/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkbox -->
+    <label class="checkbox-row">
+      <input type="checkbox" id="profilesOnly"> Show only profiles with full writeups
+    </label>
+
+    <div class="results-count" id="resultsCount">Loading...</div>
+  </div>
+
+  <!-- Grid -->
+  <div class="alumni-grid" id="alumniGrid"></div>
+  <div id="noResults" class="no-results"><p>No classmates found matching your criteria.</p></div>
 </div>
-<div class="filter-row">
-<div class="input-wrapper">
-<svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-<input type="text" id="nameSearch" placeholder="Search by name..."/>
+
 </div>
-<div class="input-wrapper">
-<svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-<input type="text" id="interestsSearch" placeholder="Search interests or location..."/>
-</div>
-</div>
-<div class="filter-row">
-<label style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:#374151;cursor:pointer;">
-<input type="checkbox" id="profilesOnly" style="width:auto;padding:0"> Show only profiles with full writeups
-</label>
-</div>
-<div class="results-count" id="resultsCount">Loading...</div>
-</div>
-<div class="alumni-grid" id="alumniGrid"></div>
-<div id="noResults" class="no-results"><p>No classmates found matching your criteria.</p></div>
-</div>
-</div>
+
 <script src="data.js"></script>
 <script>
-function getUniq(key){return[...new Set(alumniData.map(a=>a[key]).filter(Boolean))].sort()}
-function getUniqAff(){const all=alumniData.flatMap(a=>a.af?a.af.split(',').map(x=>x.trim()):[]).filter(Boolean);return[...new Set(all)].sort()}
-const svgLoc='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
-const svgEm='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>';
-const svgPh='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+// SVG icons
+const svgLoc='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+const svgEm='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>';
+const svgPh='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+
+// Get unique values for dropdowns
+function getUniq(key){
+  return[...new Set(alumniData.map(a=>a[key]).filter(Boolean))].sort();
+}
+function getUniqMultiVal(key){
+  const all=alumniData.flatMap(a=>a[key]?a[key].split(',').map(x=>x.trim()):[]).filter(Boolean);
+  return[...new Set(all)].sort();
+}
+
+// Build a card
 function card(a){
   const loc=[a.tw,a.st].filter(Boolean).join(', ');
-  let photos='';
-  if(a.p1||a.p2){const gc=(a.p1&&a.p2)?'two-photos':'one-photo';photos='<div class="photo-grid '+gc+'">'+(a.p1?'<img src="'+a.p1+'" alt="">':'')+(a.p2?'<img src="'+a.p2+'" alt="">':'')+'</div>';}
   const locH=loc?'<div class="contact-item">'+svgLoc+'<span>'+loc+'</span></div>':'';
   const emH=a.em?'<div class="contact-item">'+svgEm+'<a href="mailto:'+a.em+'">'+a.em+'</a></div>':'';
   const phH=a.ph?'<div class="contact-item">'+svgPh+'<span>'+a.ph+'</span></div>':'';
-  const wH=a.w?'<div class="writeup"><p>'+a.w.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p></div>':'';
-  const acH=a.ac?'<div class="activities"><p><span class="label">Current Interests: </span>'+a.ac+'</p></div>':'';
-  const afH=a.af?'<div class="affiliations"><div class="affiliations-tags">'+a.af.split(',').map(x=>'<span class="affiliation-tag">'+x.trim()+'</span>').join('')+'</div></div>':'';
-  return'<div class="profile-card">'+photos+'<div class="profile-content"><div class="profile-header"><h2 class="profile-name">'+a.u+'</h2><p class="profile-full-name">'+a.n+'</p><div class="profile-companies"><span>Grad: '+a.g+'</span><span>Plebe: '+a.p+'</span></div></div><div class="contact-info">'+locH+emH+phH+'</div>'+wH+acH+afH+'</div></div>';
+  const photoH=a.p1?'<div class="card-photo"><img src="'+a.p1+'" alt="'+esc(a.u)+'"></div>':'';
+  const faH=a.fa?'<div class="card-field"><span class="label">First Assignment: </span>'+esc(a.fa)+'</div>':'';
+  const acH=a.ac?'<div class="card-field"><span class="label">Current Interests: </span>'+esc(a.ac)+'</div>':'';
+  const wH=a.w?'<div class="writeup">'+esc(a.w)+'</div>':'';
+  const tmH=a.tm?'<div class="affiliations"><div class="affiliations-tags">'+a.tm.split(',').map(x=>'<span class="affiliation-tag">'+esc(x.trim())+'</span>').join('')+'</div></div>':'';
+
+  return'<div class="profile-card">'+
+    '<div class="card-header">'+
+      '<div class="card-header-left">'+
+        '<div class="profile-name">'+esc(a.u)+'</div>'+
+        '<div class="profile-full-name">'+esc(a.n)+'</div>'+
+        '<div class="profile-companies">'+
+          (a.g?'<span>Grad: '+esc(a.g)+'</span>':'')+
+          (a.p?'<span>Plebe: '+esc(a.p)+'</span>':'')+
+          (a.ma?'<span>📍 '+esc(a.ma)+'</span>':'')+
+        '</div>'+
+        locH+emH+phH+
+      '</div>'+
+      photoH+
+    '</div>'+
+    '<div class="card-body">'+
+      faH+acH+wH+tmH+
+    '</div>'+
+  '</div>';
 }
+
+function esc(s){
+  if(!s)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Filter logic
 function filterAlumni(){
   const ns=document.getElementById('nameSearch').value.toLowerCase();
   const is=document.getElementById('interestsSearch').value.toLowerCase();
+  const fas=document.getElementById('firstAssignmentSearch').value.toLowerCase();
   const gc=document.getElementById('gradCoFilter').value;
   const pc=document.getElementById('plebeCoFilter').value;
-  const af=document.getElementById('affiliationFilter').value;
+  const tm=document.getElementById('teamsFilter').value;
+  const ma=document.getElementById('metroFilter').value;
   const po=document.getElementById('profilesOnly').checked;
+
   return alumniData.filter(a=>{
-    const mn=!ns||a.u.toLowerCase().includes(ns)||a.n.toLowerCase().includes(ns);
-    const mi=!is||(a.ac&&a.ac.toLowerCase().includes(is))||(a.tw&&a.tw.toLowerCase().includes(is))||(a.st&&a.st.toLowerCase().includes(is))||(a.w&&a.w.toLowerCase().includes(is));
-    const mco=(!gc&&!pc&&!af)||(gc&&a.g===gc)||(pc&&a.p===pc)||(af&&a.af&&a.af.includes(af));
+    const mn=!ns||(a.u&&a.u.toLowerCase().includes(ns))||(a.n&&a.n.toLowerCase().includes(ns));
+    const mi=!is||
+      (a.ac&&a.ac.toLowerCase().includes(is))||
+      (a.tw&&a.tw.toLowerCase().includes(is))||
+      (a.st&&a.st.toLowerCase().includes(is))||
+      (a.w&&a.w.toLowerCase().includes(is));
+    const mfa=!fas||(a.fa&&a.fa.toLowerCase().includes(fas));
+    const mgc=!gc||a.g===gc;
+    const mpc=!pc||a.p===pc;
+    const mtm=!tm||(a.tm&&a.tm.split(',').map(x=>x.trim()).includes(tm));
+    const mma=!ma||a.ma===ma;
     const mp=!po||(a.w&&a.w.length>10);
-    return mn&&mi&&mco&&mp;
+    return mn&&mi&&mfa&&mgc&&mpc&&mtm&&mma&&mp;
   });
 }
+
+// Render
 function render(){
   const f=filterAlumni();
   document.getElementById('noResults').classList.toggle('show',f.length===0);
   document.getElementById('alumniGrid').innerHTML=f.length?f.map(card).join(''):'';
   document.getElementById('resultsCount').textContent='Showing '+f.length+' of '+alumniData.length+' classmates';
 }
-function init(){
-  getUniq('g').forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;document.getElementById('gradCoFilter').appendChild(o)});
-  getUniq('p').forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;document.getElementById('plebeCoFilter').appendChild(o)});
-  getUniqAff().forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;document.getElementById('affiliationFilter').appendChild(o)});
-  render();
-  ['nameSearch','interestsSearch'].forEach(id=>document.getElementById(id).addEventListener('input',render));
-  ['gradCoFilter','plebeCoFilter','affiliationFilter','profilesOnly'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+
+// Populate a dropdown
+function fillSelect(id,values){
+  const el=document.getElementById(id);
+  values.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o);});
 }
+
+// Init
+function init(){
+  fillSelect('gradCoFilter',getUniq('g'));
+  fillSelect('plebeCoFilter',getUniq('p'));
+  fillSelect('teamsFilter',getUniqMultiVal('tm'));
+  fillSelect('metroFilter',getUniq('ma'));
+  render();
+  ['nameSearch','interestsSearch','firstAssignmentSearch'].forEach(id=>
+    document.getElementById(id).addEventListener('input',render));
+  ['gradCoFilter','plebeCoFilter','teamsFilter','metroFilter','profilesOnly'].forEach(id=>
+    document.getElementById(id).addEventListener('change',render));
+}
+
 init();
 </script>
 </body>
