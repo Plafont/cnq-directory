@@ -206,30 +206,42 @@ function esc(s){
 }
 
 // Filter logic
+// OR group: name, grad co, plebe co, first assignment, teams — broadens the result set
+// AND filters: interests, metro area — narrows the result set
 function filterAlumni(){
-  const ns=document.getElementById('nameSearch').value.toLowerCase();
-  const is=document.getElementById('interestsSearch').value.toLowerCase();
-  const fas=document.getElementById('firstAssignmentSearch').value.toLowerCase();
+  const ns=document.getElementById('nameSearch').value.toLowerCase().trim();
+  const is=document.getElementById('interestsSearch').value.toLowerCase().trim();
+  const fas=document.getElementById('firstAssignmentSearch').value.toLowerCase().trim();
   const gc=document.getElementById('gradCoFilter').value;
   const pc=document.getElementById('plebeCoFilter').value;
   const tm=document.getElementById('teamsFilter').value;
   const ma=document.getElementById('metroFilter').value;
   const po=document.getElementById('profilesOnly').checked;
 
+  // Are any OR-group fields active?
+  const orActive = ns||fas||gc||pc||tm;
+
   return alumniData.filter(a=>{
-    const mn=!ns||(a.u&&a.u.toLowerCase().includes(ns))||(a.n&&a.n.toLowerCase().includes(ns));
-    const mi=!is||
+    // --- OR group: any match includes the person ---
+    let orMatch = false;
+    if(!orActive){
+      orMatch = true; // nothing active, everyone passes OR stage
+    } else {
+      if(ns && ((a.u&&a.u.toLowerCase().includes(ns))||(a.n&&a.n.toLowerCase().includes(ns)))) orMatch=true;
+      if(gc && a.g===gc) orMatch=true;
+      if(pc && a.p===pc) orMatch=true;
+      if(fas && (a.fa&&a.fa.toLowerCase().includes(fas))) orMatch=true;
+      if(tm && (a.tm&&a.tm.split(',').map(x=>x.trim()).includes(tm))) orMatch=true;
+    }
+
+    // --- AND filters: all active ones must match ---
+    const miMatch = !is||
       (a.ac&&a.ac.toLowerCase().includes(is))||
-      (a.tw&&a.tw.toLowerCase().includes(is))||
-      (a.st&&a.st.toLowerCase().includes(is))||
       (a.w&&a.w.toLowerCase().includes(is));
-    const mfa=!fas||(a.fa&&a.fa.toLowerCase().includes(fas));
-    const mgc=!gc||a.g===gc;
-    const mpc=!pc||a.p===pc;
-    const mtm=!tm||(a.tm&&a.tm.split(',').map(x=>x.trim()).includes(tm));
-    const mma=!ma||a.ma===ma;
-    const mp=!po||(a.w&&a.w.length>10);
-    return mn&&mi&&mfa&&mgc&&mpc&&mtm&&mma&&mp;
+    const maMatch = !ma||a.ma===ma;
+    const poMatch = !po||(a.w&&a.w.length>10);
+
+    return orMatch && miMatch && maMatch && poMatch;
   });
 }
 
