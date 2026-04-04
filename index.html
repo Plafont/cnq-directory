@@ -72,6 +72,12 @@ input[type="text"]:focus,select:focus{outline:none;border-color:#111827;box-shad
 
 /* Section label above filter groups */
 .filter-section-label{font-size:.7rem;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
+.logic-header{display:flex;align-items:center;gap:.75rem;margin-bottom:.25rem}
+.logic-badge{display:inline-flex;align-items:center;justify-content:center;width:2.25rem;height:1.5rem;border-radius:.25rem;font-size:.7rem;font-weight:800;letter-spacing:.08em;flex-shrink:0}
+.or-badge{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0}
+.and-badge{background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
+.logic-desc{font-size:.8rem;color:#6b7280}
+.logic-desc strong{color:#374151}
 </style>
 </head>
 <body>
@@ -88,9 +94,12 @@ input[type="text"]:focus,select:focus{outline:none;border-color:#111827;box-shad
 <div class="container filters-section">
   <div class="filters-container">
 
-    <!-- Row 1: Book builders (dropdowns) -->
-    <div class="filter-section-label">Build Your Book</div>
-    <div class="filter-row four-col">
+    <!-- OR Section -->
+    <div class="logic-header">
+      <span class="logic-badge or-badge">OR</span>
+      <span class="logic-desc">These fields <strong>expand</strong> your results — each one you fill in adds more classmates to the list</span>
+    </div>
+    <div class="filter-row four-col" style="margin-top:.75rem">
       <div>
         <div class="filter-label">Grad Company</div>
         <select id="gradCoFilter"><option value="">All Grad Companies</option></select>
@@ -104,31 +113,6 @@ input[type="text"]:focus,select:focus{outline:none;border-color:#111827;box-shad
         <select id="teamsFilter"><option value="">All Teams</option></select>
       </div>
       <div>
-        <div class="filter-label">Metro Area</div>
-        <select id="metroFilter"><option value="">All Metro Areas</option></select>
-      </div>
-    </div>
-
-    <hr class="filter-divider">
-
-    <!-- Row 2: Text searches -->
-    <div class="filter-section-label">Search</div>
-    <div class="filter-row three-col">
-      <div>
-        <div class="filter-label">Name</div>
-        <div class="input-wrapper">
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" id="nameSearch" placeholder="Search by name..."/>
-        </div>
-      </div>
-      <div>
-        <div class="filter-label">Interests / Location</div>
-        <div class="input-wrapper">
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" id="interestsSearch" placeholder="Search interests or location..."/>
-        </div>
-      </div>
-      <div>
         <div class="filter-label">First Assignment</div>
         <div class="input-wrapper">
           <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -136,9 +120,39 @@ input[type="text"]:focus,select:focus{outline:none;border-color:#111827;box-shad
         </div>
       </div>
     </div>
+    <div class="filter-row" style="max-width:360px;margin-bottom:1rem">
+      <div>
+        <div class="filter-label">Name</div>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="nameSearch" placeholder="Search by name..."/>
+        </div>
+      </div>
+    </div>
+
+    <hr class="filter-divider">
+
+    <!-- AND Section -->
+    <div class="logic-header">
+      <span class="logic-badge and-badge">AND</span>
+      <span class="logic-desc">These fields <strong>narrow</strong> your results — they filter down whoever is already shown above</span>
+    </div>
+    <div class="filter-row two-col" style="margin-top:.75rem">
+      <div>
+        <div class="filter-label">Metro Area</div>
+        <select id="metroFilter"><option value="">All Metro Areas</option></select>
+      </div>
+      <div>
+        <div class="filter-label">Interests / Keywords</div>
+        <div class="input-wrapper">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="interestsSearch" placeholder="Search interests or keywords..."/>
+        </div>
+      </div>
+    </div>
 
     <!-- Checkbox -->
-    <label class="checkbox-row">
+    <label class="checkbox-row" style="margin-top:.25rem">
       <input type="checkbox" id="profilesOnly"> Show only profiles with full writeups
     </label>
 
