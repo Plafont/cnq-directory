@@ -1,4 +1,4 @@
-const data = [
+const alumniData = [
   {
     "Used Name": "Ric",
     "Full Name": "Eric Adams",
